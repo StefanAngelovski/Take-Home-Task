@@ -14,7 +14,7 @@ The tools I used are:
 - Python3
 - Sentence transformers (paraphrase-multilingual-MiniLM-L12-v2) 
 - Cosine similarity check
-- 
+- Deep Translator (specifically Google's translator) 
 
 
 # How to run the project 
@@ -34,7 +34,7 @@ python3 ./main.py
 
 This approach can scale in a real product like Verba AI by:
 - Using a vector database for efficient similarity search.
-- Supporting many more multilingual embeddings.
+- Supporting many more embeddings.
 - Integrating with existing customer support systems.
 - Running on the cloud (not on my local PC :D)
 - Monitor performance in the background to see if it's straining the server.
