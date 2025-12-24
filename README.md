@@ -7,20 +7,21 @@
 
  The way I connect the user query to the embeddings from the json is by doing a cosine similarity check.
 
- It supports multiple languages also as the model  supports it as well as a confidence score.
+ It supports multiple languages also as the model supports it as well as a confidence score.
 
 # Tools Used
 The tools I used are:
 - Python3
-- Sentence transformers (all-MiniLM-L6-v2) 
+- Sentence transformers (paraphrase-multilingual-MiniLM-L12-v2) 
 - Cosine similarity check
+- 
 
 
 # How to run the project 
 First you install our only dependancies:
 
 ```bash
-pip install sentence-transformers torch
+pip install sentence-transformers torch langdetect deep_translator
 ```
 
 Start the application:
