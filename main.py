@@ -1,14 +1,15 @@
-import json, torch
+import json, torch, argparse
 from sentence_transformers import SentenceTransformer, util
 from langdetect import detect, LangDetectException
 from deep_translator import GoogleTranslator
 
 class FAQAssistant:
-    def __init__(self):
+    def __init__(self, model_name: str | None = None):
         with open("faq_dataset.json", "r") as file:
             faq_data = json.load(file)
 
-        self.model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        default_model = 'paraphrase-multilingual-MiniLM-L12-v2'
+        self.model = SentenceTransformer(model_name or default_model)
         self.questions = [item['question'] for item in faq_data] 
         self.question_embeddings = self.model.encode(self.questions, convert_to_tensor=True)
         self.answers = {item['question']: item['answer'] for item in faq_data}
@@ -24,7 +25,7 @@ class FAQAssistant:
             question = self.questions[idx]
             results.append({
                 'question': question,
-                'answer': self.answers[question],
+                'answer': self.answers[question], 
                 'confidence': float(score)
             })
 
@@ -63,7 +64,7 @@ class FAQAssistant:
                 print(f"{idx}. {faq['question']} (Confidence: {faq['confidence']:.2f})")
 
             
-            user_lang = self.detect_language(user_query) 
+            user_lang = self.detect_language(user_query)  
             best_answer_en = top_faqs[0]['answer']
             best_answer_out = self.translate_text(best_answer_en, source_language='en', target_language=user_lang)
 
@@ -71,6 +72,18 @@ class FAQAssistant:
 
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="FAQ Assistant")
+    parser.add_argument(
+        "--model", "-m", 
+        type=str,
+        default="paraphrase-multilingual-MiniLM-L12-v2",
+    )
+    return parser.parse_args()
+
+
+
 if __name__ == "__main__":
-    assistant = FAQAssistant()
+    args = parse_args()
+    assistant = FAQAssistant(model_name=args.model)
     assistant.run_cli()

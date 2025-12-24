@@ -15,7 +15,7 @@ The tools I used are:
 - Sentence transformers (paraphrase-multilingual-MiniLM-L12-v2) 
 - Cosine similarity check
 - Deep Translator (specifically Google's translator) 
-
+- Argparse - so that you can use custom sentence transformers of your choosing with --model or -m
 
 # How to run the project 
 First you install our only dependancies:
@@ -28,6 +28,12 @@ Start the application:
 
 ```bash 
 python3 ./main.py
+```
+
+or
+
+```bash
+python3 ./main.py --model "<CUSTOM_MODEL>"
 ```
 
 # Scaling 
