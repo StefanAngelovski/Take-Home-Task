@@ -20,11 +20,14 @@ The tools I used are:
 First you install our only dependancies:
 
 ```bash
-pip install sentence-transformers torch```
+pip install sentence-transformers torch
+```
+
+Start the application:
 
 ```bash 
-python3 ./main.py```
-
+python3 ./main.py
+```
 
 # Scaling 
 
@@ -32,3 +35,8 @@ This approach can scale in a real product like Verba AI by:
 - Using a vector database for efficient similarity search.
 - Supporting many more multilingual embeddings.
 - Integrating with existing customer support systems.
+- Running on the cloud (not on my local PC :D)
+- Monitor performance in the background to see if it's straining the server.
+- It must be implemented with a GUI for the end user to use with ease.
+- Researching models that might be more powerful or using a proper LLM for long context questions provided that's what the client is asking for.
+- And other...
